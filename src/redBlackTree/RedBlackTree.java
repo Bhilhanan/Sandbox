@@ -10,9 +10,10 @@ public class RedBlackTree {
 		bst = new BinarySearchTree();
 	}
 
-	public void insert(int i) {
-		bst.addInsert(i);
-		preserveRBProperty(bst.find(i));
+	public Node insert(int i) {
+		Node root=bst.addInsert(i);
+		preserveRBProperty(bst.find(root,i));
+		return bst.root;
 	}
 
 	private void preserveRBProperty(Node node) {
@@ -83,8 +84,8 @@ public class RedBlackTree {
 		Node child = node.left;
 		Node granChild=child.right;
 		root=transplant(root,node,child);
-		child.right=node;
 		node.parent=child;
+		child.right=node;
 		node.left=granChild;
 		if(granChild!=null){
 			granChild.parent=node;
@@ -92,8 +93,21 @@ public class RedBlackTree {
 		return root;
 	}
 
-	public Node searchNode(int i) {
-		return bst.find(i);
+	public Node leftRotate(Node root, Node node) {
+		Node child=node.right;
+		Node granChild=child.left;
+		root=transplant(root,node,child);
+		node.parent=child;
+		child.left=node;
+		node.right=granChild;
+		if(granChild!=null){
+			granChild.parent=node;
+		}
+		return root;
+	}
+
+	public Node searchNode(Node root, int i) {
+		return bst.find(root,i);
 	}
 
 	public Node getRoot() {
@@ -113,19 +127,6 @@ public class RedBlackTree {
 			newNode.parent = parent;
 		}
 		return bst.root;
-	}
-
-	public Node leftRotate(Node root, Node node) {
-		Node child=node.right;
-		Node granChild=child.left;
-		root=transplant(root,node,child);
-		node.parent=child;
-		child.left=node;
-		node.right=granChild;
-		if(granChild!=null){
-			granChild.parent=node;
-		}
-		return root;
 	}
 
 	public int getBHeight() {

@@ -27,6 +27,7 @@ public class LinkedList {
 	}
 
 	public void reverse() {
+		tail=head;
 		head = reverseRecursive(head, null);
 	}
 
@@ -40,21 +41,30 @@ public class LinkedList {
 	}
 
 	public void reverseIterative() {
+		tail=head;
 		Node curr = head;
 		Node next = null;
 		Node prev = null;
 		Node newHead = null;
 		while (true) {
-			if (curr== null) {
+			if (curr == null) {
 				newHead = prev;
 				break;
 			}
 			next = curr.next;
 			curr.next = prev;
-			prev=curr;
+			prev = curr;
 			curr = next;
 		}
 		head = newHead;
+	}
+
+	public Node getHead() {
+		return head;
+	}
+
+	public Node getTail() {
+		return tail;
 	}
 }
 

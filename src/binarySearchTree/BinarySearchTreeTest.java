@@ -1,6 +1,11 @@
 package binarySearchTree;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,41 +22,41 @@ public class BinarySearchTreeTest {
 
 	@Test
 	public void shouldRemove() {
-		bst.inOrderTraverse();
+		assertNotNull(bst.find(bst.root, 15));
 		bst.remove(15);
-		bst.inOrderTraverse();
+		assertNull(bst.find(bst.root, 15));
 	}
 
 	@Test
 	public void shouldFind() {
-		Node node = bst.find(20);
-		Assert.assertNotNull(node);
-		Assert.assertEquals(20, node.value);
+		Node node = bst.find(bst.root,20);
+		assertNotNull(node);
+		assertEquals(20, node.value);
 	}
 
 	@Test
 	public void shouldReturnMin() {
 		Node node = bst.findMin();
-		Assert.assertNotNull(node);
-		Assert.assertEquals(10, node.value);
+		assertNotNull(node);
+		assertEquals(10, node.value);
 	}
 
 	@Test
 	public void shouldReturnMax() {
 		Node node = bst.findMax();
-		Assert.assertNotNull(node);
-		Assert.assertEquals(20, node.value);
+		assertNotNull(node);
+		assertEquals(20, node.value);
 	}
 
 	@Test
 	public void shouldTestIsEmpty() {
-		Assert.assertFalse(bst.isEmpty());
+		assertFalse(bst.isEmpty());
 	}
 
 	@Test
 	public void shouldMakeEmpty() {
 		bst.makeEmpty();
-		Assert.assertTrue(bst.isEmpty());
+		assertTrue(bst.isEmpty());
 	}
 	
 	@Test
@@ -61,6 +66,6 @@ public class BinarySearchTreeTest {
 		bst.addInsert(5);
 		bst.addInsert(20);
 		bst.addInsert(4);
-		Assert.assertEquals(3,bst.getHeight());
+		assertEquals(3,bst.getHeight());
 	}
 }

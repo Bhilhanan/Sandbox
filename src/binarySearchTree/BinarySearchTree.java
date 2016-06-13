@@ -26,8 +26,9 @@ public class BinarySearchTree {
 		return n;
 	}
 
-	public void addInsert(int i) {
+	public Node addInsert(int i) {
 		root = addNode(root, i);
+		return root;
 	}
 
 	public void inOrderTraverse() {
@@ -71,11 +72,7 @@ public class BinarySearchTree {
 		return minValue(n.left);
 	}
 
-	public Node find(int i) {
-		return find(root, i);
-	}
-
-	private Node find(Node n, int value) {
+	public Node find(Node n, int value) {
 		if (n == null) {
 			return n;
 		}
