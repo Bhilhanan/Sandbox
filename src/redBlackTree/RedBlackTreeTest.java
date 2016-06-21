@@ -24,8 +24,8 @@ public class RedBlackTreeTest {
 
 	@Test
 	public void shouldRightRotate(){
-		Node node=rbt.searchNode(rbt.getRoot(),12);
-		Node childNode=rbt.searchNode(root, 9);
+		Node node=rbt.find(root,12);
+		Node childNode=rbt.find(root, 9);
 		Assert.assertEquals(node, childNode.parent);
 		root=rbt.rightRotate(root,node);
 		Assert.assertEquals(childNode,node.parent);
@@ -33,8 +33,8 @@ public class RedBlackTreeTest {
 	
 	@Test
 	public void shouldLeftRotate(){
-		Node node=rbt.searchNode(root,6);
-		Node childNode=rbt.searchNode(root, 12);
+		Node node=rbt.find(root,6);
+		Node childNode=rbt.find(root, 12);
 		Assert.assertEquals(node, childNode.parent);
 		root=rbt.leftRotate(root,node);
 		Assert.assertEquals(childNode,node.parent);
@@ -43,9 +43,9 @@ public class RedBlackTreeTest {
 	@Test
 	public void shouldTransplant(){
 		Node newNode=new Node(11);
-		Node root=rbt.transplant(rbt.getRoot(),rbt.searchNode(this.root,12),newNode);
-		Assert.assertNull(rbt.searchNode(root,12));
-		Assert.assertNotNull(rbt.searchNode(root,11));
+		root=rbt.transplant(root,rbt.find(root,12),newNode);
+		Assert.assertNull(rbt.find(root,12));
+		Assert.assertNotNull(rbt.find(root,11));
 	}
 	
 	@Test

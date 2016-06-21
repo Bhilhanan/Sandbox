@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BinarySearchTree {
+public class BinarySearchTree{
 
 	public Node root;
 
@@ -129,11 +129,12 @@ public class BinarySearchTree {
 		if (node == null) {
 			return level;
 		}
+		level++;
 		if (node.left == null && node.right == null) {
-			return level + 1;
+			return level;
 		}
-		return Math.max(getHeightFrom(node.left, level + 1),
-				getHeightFrom(node.right, level + 1));
+		return Math.max(getHeightFrom(node.left, level),
+				getHeightFrom(node.right, level));
 	}
 
 	public void printLevelOrder() {

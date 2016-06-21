@@ -68,4 +68,9 @@ public class BinarySearchTreeTest {
 		bst.addInsert(4);
 		assertEquals(3,bst.getHeight());
 	}
+	
+	@Test
+	public void shouldGetPath(){
+//		bst.getPath(bst.root,bst.find(bst.root, value))
+	}
 }

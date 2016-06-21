@@ -3,21 +3,16 @@ package redBlackTree;
 import binarySearchTree.BinarySearchTree;
 import binarySearchTree.Node;
 
-public class RedBlackTree {
-	BinarySearchTree bst;
-
-	public RedBlackTree() {
-		bst = new BinarySearchTree();
-	}
+public class RedBlackTree extends BinarySearchTree{
 
 	public Node insert(int i) {
-		Node root=bst.addInsert(i);
-		preserveRBProperty(bst.find(root,i));
-		return bst.root;
+		Node root=addInsert(i);
+		preserveRBProperty(find(root,i));
+		return root;
 	}
 
 	private void preserveRBProperty(Node node) {
-		if(node==bst.root){
+		if(node==root){
 			node.isBlack=true;
 			return;
 		}
@@ -37,29 +32,29 @@ public class RedBlackTree {
 			}else if(parent.right==node && gran.right==parent){
 				rightRightCase(parent, gran);
 			}else if(parent.right==node && gran.left==parent){
-				leftRotate(bst.root,parent);
+				leftRotate(root,parent);
 				leftLeftCase(node, gran);
 			}else{
-				rightRotate(bst.root,parent);
+				rightRotate(root,parent);
 				rightRightCase(node,gran);
 			}
 		}
 	}
 
 	private void rightRightCase(Node parent, Node gran) {
-		leftRotate(bst.root,gran);
+		leftRotate(root,gran);
 		gran.isBlack=!gran.isBlack;
 		parent.isBlack=!parent.isBlack;
 	}
 
 	private void leftLeftCase(Node parent, Node gran) {
-		rightRotate(bst.root, gran);
+		rightRotate(root, gran);
 		gran.isBlack=!gran.isBlack;
 		parent.isBlack=!parent.isBlack;
 	}
 
 	public Node getSibling(Node node){
-		if(node==null || node==bst.root){
+		if(node==null || node==root){
 			return null;
 		}
 		Node parent=node.parent;
@@ -67,17 +62,6 @@ public class RedBlackTree {
 			return parent.right;
 		}
 		return parent.left;
-	}
-	public void inOrderTraverse() {
-		bst.inOrderTraverse();
-	}
-
-	public void printLevelOrder() {
-		bst.printLevelOrder();
-	}
-
-	public void prettyPrint(Node node) {
-		bst.printLevelOrderPrettyPrint(node);
 	}
 
 	public Node rightRotate(Node root, Node node) {
@@ -106,18 +90,10 @@ public class RedBlackTree {
 		return root;
 	}
 
-	public Node searchNode(Node root, int i) {
-		return bst.find(root,i);
-	}
-
-	public Node getRoot() {
-		return bst.root;
-	}
-
 	public Node transplant(Node root, Node oldNode, Node newNode) {
 		Node parent = oldNode.parent;
 		if (parent == null) {
-			bst.setRoot(newNode);
+			setRoot(newNode);
 		} else if (parent.left == oldNode) {
 			parent.left = newNode;
 		} else {
@@ -126,11 +102,11 @@ public class RedBlackTree {
 		if (newNode != null) {
 			newNode.parent = parent;
 		}
-		return bst.root;
+		return root;
 	}
 
 	public int getBHeight() {
-		return getBHeight(bst.root,0);
+		return getBHeight(root,0);
 	}
 
 	private int getBHeight(Node node,int bHeight) {
