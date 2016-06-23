@@ -8,27 +8,27 @@ import java.util.Map.Entry;
 
 public class AdjacencyList{
 
-	Map<Vertex,ArrayList<Vertex>> adjacencyList=new HashMap<>();
+	Map<Vertex,ArrayList<Edge>> adjacencyList=new HashMap<>();
 	
-	public Map<Vertex,ArrayList<Vertex>> populateAdjacencyList(List<Edge> edges) {
+	public Map<Vertex, ArrayList<Edge>> populateAdjacencyList(List<Edge> edges) {
 		for(Edge edge:edges){
-			ArrayList<Vertex> newList;
+			ArrayList<Edge> newList;
 			Vertex source = edge.getSource();
 			if(adjacencyList.containsKey(source)){
 				newList = adjacencyList.get(source);
-				newList.add(edge.getDestination());
+				newList.add(edge);
 				adjacencyList.put(source,newList);
 				continue;
 			}
 			newList=new ArrayList<>();
-			newList.add(edge.getDestination());
+			newList.add(edge);
 			adjacencyList.put(source,newList);
 		}
 		return adjacencyList;
 	}
 
 	public void printGraph() {
-		for(Entry<Vertex, ArrayList<Vertex>> entry:adjacencyList.entrySet()){
+		for(Entry<Vertex, ArrayList<Edge>> entry:adjacencyList.entrySet()){
 			System.out.println(entry.getKey().getName()+" "+entry.getValue());
 		}
 	}

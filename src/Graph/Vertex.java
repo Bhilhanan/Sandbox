@@ -1,13 +1,10 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Vertex {
 	final private String id;
 	final private String name;
 	Vertex parent;
-	List<Vertex> children;
+	int minCostEdgeToReach;
 
 	public Vertex(String id, String name) {
 		this.id = id;
@@ -51,12 +48,4 @@ public class Vertex {
 	public String toString() {
 		return name;
 	}
-
-	public void addChild(Vertex child) {
-		if(children==null){
-			children=new ArrayList<>();
-		}
-		children.add(child);
-	}
-
 }

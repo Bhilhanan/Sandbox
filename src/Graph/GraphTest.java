@@ -2,6 +2,7 @@ package Graph;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -66,10 +67,19 @@ public class GraphTest {
 	}
 
 	@Test
-	public void testMinimumSpanningTree() {
-		Map<Vertex, Vertex> mstEdges = graph.mstFromVertex(new Vertex("Node_0", "Node_0"));
-		for (Entry<Vertex, Vertex> entry : mstEdges.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
+	public void testMinimumSpanningTreeFromVertex() {
+		ArrayList<Vertex> mstVertices = graph.mstFromVertex(new Vertex("Node_0", "Node_0"));
+		for (Vertex v : mstVertices) {
+			System.out.println(v.getId() + "<-" + v.parent);
+		}
+	}
+	
+	@Test
+	public void testMinimumSpanningForest() {
+		ArrayList<Vertex> mstVertices = graph.mstForest(new Vertex("Node_0", "Node_0"));
+		assertNotNull(mstVertices);
+		for (Vertex v : mstVertices) {
+			System.out.println(v.getId() + "<-" + v.parent);
 		}
 	}
 	
