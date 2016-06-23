@@ -1,7 +1,7 @@
 package quicksort;
 
 public class Quicksort {
-	public static int[] a = { 1, 2, 3, 4, 5, 6, 7 };
+	public int[] a = { 1, 2, 3, 4, 5, 6, 7 };
 
 	public int findNthBiggest(int left, int right, int n) {
 		if (left == right) { // if only one element

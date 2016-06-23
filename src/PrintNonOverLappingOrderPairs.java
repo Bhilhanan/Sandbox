@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 //# take an array and print non over lapping in order pairs. example:
