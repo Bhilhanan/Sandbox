@@ -1,5 +1,7 @@
 package trie;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,5 +32,15 @@ public class TrieTest {
 		Assert.assertEquals(null,trie.autoComplete("z"));
 		String[] expected={"ape","app","apple"};
 		Assert.assertArrayEquals(expected,trie.autoComplete("ap").toArray());
+	}
+	
+	@Test
+	public void testTravellerGoBack(){
+		Traveller traveller = trie.getTraveller();
+		traveller.goTo('a');
+		traveller.goTo('p');
+		traveller.goTo('e');
+		Node prev=traveller.getPrevious();
+		assertNotNull(prev);
 	}
 }

@@ -13,25 +13,33 @@ public class Trie {
 
 	public Trie() {
 		root = new Node();
+		root.parent=null;
 		traveller = new Traveller(root);
 	}
 
 	public void insert(String word) {
+		insert(word,root);
+		
+	}
+
+	private void insert(String word,Node parentNode) {
 		Map<Character, Node> children = root.children;
+		Node currNode=null;
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
 
-			Node node;
 			if (children.containsKey(c)) {
-				node = children.get(c);
+				parentNode=currNode;
+				currNode = children.get(c);
 			} else {
-				node = new Node(c);
-				children.put(c, node);
+				currNode = new Node(c);
+				currNode.parent=parentNode;
+				children.put(c, currNode);
 			}
-			children = node.children;
+			children = currNode.children;
 
 			if (i == word.length() - 1) {
-				node.isLeaf = true;
+				currNode.isLeaf = true;
 			}
 		}
 	}
